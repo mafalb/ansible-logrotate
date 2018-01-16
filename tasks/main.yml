@@ -1,0 +1,15 @@
+---
+
+- name: logrotate package is installed
+  package:
+    name: logrotate
+    state: present
+
+- name: logrotate is configured
+  template:
+    src: "{{ item }}"
+    dest: /etc/logrotate.conf
+    backup: yes
+  with_first_found:
+    - "{{ playbook_dir }}/templates/{{ logrotate_cfg }}"
+    - logrotate.conf
