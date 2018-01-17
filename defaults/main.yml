@@ -2,6 +2,5 @@
 
 logrotate:
   frequency: weekly
-  keep: 4
   dateext: yes
   compress: xz
