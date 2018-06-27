@@ -1,6 +1,12 @@
 ---
 
 logrotate:
-  frequency: weekly
-  dateext: yes
-  compress: xz
+  cfg:
+    frequency: weekly
+    keep: 4
+    dateext: yes
+    compress: false
+    compresscmd: /usr/bin/xz
+    uncompresscmd: /usr/bin/unxz
+    compressext: .xz
+    delaycompress: true

@@ -6,10 +6,8 @@
     state: present
 
 - name: logrotate is configured
+  when: logrotate.cfg_file is not defined
   template:
-    src: "{{ item }}"
+    src: logrotate.conf
     dest: /etc/logrotate.conf
     backup: yes
-  with_first_found:
-    - "{{ playbook_dir }}/templates/{{ logrotate_cfg }}"
-    - logrotate.conf
