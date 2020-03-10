@@ -1,0 +1,7 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: run logrotate
+  command: /etc/cron.daily/logrotate
+
+...

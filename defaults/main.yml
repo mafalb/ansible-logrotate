@@ -1,12 +1,11 @@
+# vim: set ft=yaml ts=2 expandtab:
 ---
 
-logrotate:
-  cfg:
-    frequency: weekly
-    keep: 4
-    dateext: yes
-    compress: false
-    compresscmd: /usr/bin/xz
-    uncompresscmd: /usr/bin/unxz
-    compressext: .xz
-    delaycompress: true
+logrotate_retention_days: 30
+logrotate_frequency: weekly
+logrotate_compress: false
+logrotate_delaycompress: true
+logrotate_compression: gzip
+logrotate_dateext: true
+
+...

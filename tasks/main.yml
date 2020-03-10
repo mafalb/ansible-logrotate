@@ -1,13 +1,22 @@
+# vim: set ft=yaml ts=2 expandtab:
 ---
 
-- name: logrotate package is installed
+- name: OS specific variables
+  include_vars:
+    file: "{{ ansible_os_family }}.yml"
+
+- name: logrotate are installed
   package:
     name: logrotate
     state: present
 
+- debug:
+    msg: "{{ logrotate_retention_days|rotate(logrotate_frequency) }}"
+
 - name: logrotate is configured
-  when: logrotate.cfg_file is not defined
   template:
-    src: logrotate.conf
+    src: logrotate.conf.j2
     dest: /etc/logrotate.conf
     backup: yes
+
+...

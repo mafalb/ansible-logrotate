@@ -1,0 +1,13 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: Converge
+  hosts: all
+  roles:
+  - name: mafalb.logrotate
+    logrotate_retention_days: 730
+    logrotate_frequency: daily
+    logrotate_compression: xz
+    logrotate_compress: true
+
+...

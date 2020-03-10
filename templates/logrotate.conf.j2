@@ -1,0 +1,48 @@
+# see "man logrotate" for details
+# rotate log files {{ logrotate_frequency }}
+{{ logrotate_frequency }}
+
+# keep {{ rotate(logrotate_retention_days, logrotate_frequency) days of }} logfiles
+rotate {{ rotate(logrotate_retention_days, logrotate_frequency) }}
+
+# create new (empty) log files after rotating old ones
+create
+
+# use date as a suffix of the rotated file
+dateext
+
+# if you want your log files compressed...
+{% if logrotate_compress %}
+compress
+compresscmd {{ logrotate_compression_methods[logrotate_compression].compresscmd }}
+uncompresscmd {{ logrotate_compression_methods[logrotate_compression].compresscmd }}
+compressext .{{ logrotate_compression_methods[logrotate_compression].compressext }}
+{% if logrotate_delaycompress %}
+delaycompress
+{% endif %}
+{% else %}
+nocompress
+{% endif %}
+
+# RPM packages drop log rotation information into this directory
+include /etc/logrotate.d
+
+# no packages own wtmp and btmp -- we'll rotate them here
+/var/log/wtmp {
+    monthly
+    create 0664 root utmp
+	minsize 1M
+    rotate 1
+}
+
+# The most common login failure is to give password instead of username.
+# set restricitive permissions
+#
+/var/log/btmp {
+    missingok
+    monthly
+    create {{ btmp_permissions }} root utmp
+    rotate 1
+}
+
+# system-specific logs may be also be configured here.

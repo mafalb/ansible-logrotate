@@ -1,0 +1,11 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+btmp_permissions: 0660
+logrotate_compression_packages:
+  xz: xz-utils
+  gzip: gzip
+  bzip2: bzip2
+  lz4: liblz4-tool
+
+...

@@ -1,0 +1,22 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+logrotate_compression_methods:
+  xz:
+    compresscmd: /usr/bin/xz
+    uncompresscmd: /usr/bin/unxz
+    compressext: '.xz'
+  gzip:
+    compresscmd: /usr/bin/gzip
+    uncompresscmd: /usr/bin/gunzip
+    compressext: '.gz'
+  bzip2:
+    compresscmd: /usr/bin/bzip2
+    uncompresscmd: /usr/bin/bunzip2
+    compressext: '.bz2'
+  lz4:
+    compresscmd: /usr/bin/lz4
+    uncompresscmd: /usr/bin/unlz4
+    compressext: '.lz4'
+
+...

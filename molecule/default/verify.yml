@@ -1,0 +1,12 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: Verify
+  hosts: all
+  tasks:
+  - name: run logrotate
+    check_mode: false
+    command: true
+    notify: run logrotate
+     
+...
